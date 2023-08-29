@@ -1,12 +1,16 @@
 <template>
 	<view class="container">
 		<view class="drawer">
-			<view class="title">识别结果：{{ res }}</view>
+			<view class="draw-header">
+				<button class="btn-clear" @click="clearCanvas"></button>
+				<button class="btn-identify" @click="identify"></button>
+			</view>
+			<!-- <view class="title">识别结果：{{ res }}</view> -->
 			<canvas class="draw-canvas" canvas-id="draw-canvas" @touchstart="touchstart" @touchmove="touchmove"
 				@touchend="touchend"></canvas>
-			<view class="footer">
-				<button size="mini" class="clear-canvas" @click="clearCanvas">清除</button>
-				<button size="mini" class="identify" @click="identify">识别</button>
+			<view class="draw-footer">
+				<button class="btn-last" @click="lastSub"></button>
+				<button class="btn-next" @click="nextSub"></button>
 			</view>
 		</view>
 	</view>
@@ -134,6 +138,7 @@
 			identify: function() {
 				console.log(this.finalPoints)
 				this.res = ocrRaw(this.finalPoints)
+				console.log('================识别数字结果: ',this.res)
 				//
 				// uni.request({
 				//   url: 'http://localhost:8081/hw2reco/number', //仅为示例，并非真实接口地址。
@@ -146,7 +151,20 @@
 				//     this.res = res.data.data.number;
 				//   }
 				// });
-			}
+			},			
+			lastSub() {
+				console.log('click lastSub')
+			},			
+			nextSub() {
+				console.log('click nextSub')
+			},
+			// this.changeHideStatus('job-tools', 'none')
+			changeHideStatus(className, displayValue) {
+				var elements = document.querySelectorAll('.' + className);
+				for (var i = 0; i < elements.length; i++) {
+					elements[i].style.display = displayValue;
+				}
+			}			
 		},
 	}
 </script>
@@ -167,25 +185,27 @@
 
 	.container {
 		width: 100%;
-		height: 94%;
+		height: 93%;
 		position: absolute;
-		top: 6%;
+		top: 7%;
 		bottom: 0%;
 		left: 0;
 		right: 0;
 		/* margin: 0; */
 		background-image: url('../../static/icon/sub-bg.png');
-		background-size: 100% 89%;
-		background-repeat: no-repeat;
+		background-size: 100% 98%;
 		/* background-color: #FCEDFA; */
-
+		background-repeat: no-repeat;
 	}
 
+	/* 画板 */
 	.drawer {
+		display: none;
 		position: absolute;
 		width: 100%;
 		height: 25%;
-		background-color: #ECECEC;
+		border-top: 2px solid #6B8BD3;
+		background-color: #F3F3FF;
 		bottom: 0%;
 	}
 
@@ -196,29 +216,85 @@
 		font-family: 'pxp-font';
 	}
 
-	.draw-canvas {
+	.draw-canvas {		
 		position: absolute;
 		left: 6%;
-		padding-top: 12%;
+		top: 25%;
+		padding-top: 15%;
 		/* display: flex;
 		justify-content: center; */
 		width: 88%;
-		height: 70px;
+		height: 40px;		 
 		background-color: #88ec9f;
 	}
 
-	.footer {
+	.draw-header {
 		display: flex;
 		position: relative;
-		margin-bottom: 20px;
+		justify-content: center;
 	}
 
-	.clear-canvas {
-		font-size: 20px;
+	.btn-clear {
+		background-image: url('../../static/icon/clean-red.png');
+		background-size: cover;
+		background-repeat: no-repeat;
+		width: 58px;
+		height: 28px;
+		top: 10px;
+		right: 16%;
+		border: none;
+		/* font-size: 20px; */
 		font-family: 'pxp-font';
 	}
 
-	.clear-canvas {
-		font-size: 20px;
+	.btn-identify {
+		font-family: 'pxp-font';
+		background-size: cover;
+		background-repeat: no-repeat;
+		width: 58px;
+		height: 28px;
+		top: 10px;
+		left: 16%;
+		border: none;
+		background-image: url('../../static/icon/sure-green.png');
+		/* background-size: 100% 100%; */
+		background-repeat: no-repeat;
 	}
+
+	.draw-footer {
+		display: flex;
+		position: absolute;
+		justify-content: center;
+		bottom: 10px;
+		width: 100%;
+		height: 30px;
+		/* background-color: #ff3737; */
+		/* margin-bottom: 10px; */
+	}
+	.btn-last {
+		background-image: url('../../static/icon/last-sub.png');
+		background-size: cover;
+		background-repeat: no-repeat;
+		width: 58px;
+		height: 28px;
+		/* margin-top: 32%; */
+		right: 16%;
+		border: none;
+		/* font-size: 20px; */
+		font-family: 'pxp-font';
+	}	
+	.btn-next {		
+		background-image: url('../../static/icon/next-sub.png');
+		background-size: cover;
+		background-repeat: no-repeat;
+		width: 58px;
+		height: 28px;
+		/* margin-top: 32%; */
+		left: 16%;
+		border: none;
+		/* background-size: 100% 100%; */
+		background-repeat: no-repeat;
+	}
+
+	/* 画板 */
 </style>
