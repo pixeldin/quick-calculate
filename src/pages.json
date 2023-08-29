@@ -21,7 +21,7 @@
 		    
 		},
 		{
-			"path": "pages/index/index",
+			"path": "pages/index/answer",
 			"style": {
 				"navigationStyle": "custom",
 				"onReachBottomDistance": 70,
@@ -56,6 +56,28 @@
             			}
             		}
             	}
+            }
+            
+        }
+        ,{
+            "path" : "pages/index/question/question",
+            "style" :                                                                                    
+            {
+                                "navigationStyle": "custom",
+                            "onReachBottomDistance": 70,
+                                                                      
+                            "navigationBarBackgroundColor": "#FCEDFA",
+                            "app-plus": {
+                                "titleNView": false,                        
+                                "bounce": "none",                           
+                                "titleNView": {
+                                    "backButton": {
+                                        "color": "#ffffff",
+                                        "fontSize": "32px"
+                                    }
+                                }
+                            }
+                        
             }
             
         }

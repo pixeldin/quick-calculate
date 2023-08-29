@@ -200,7 +200,7 @@
 
 	/* 画板 */
 	.drawer {
-		display: none;
+		/* display: none; */
 		position: absolute;
 		width: 100%;
 		height: 25%;

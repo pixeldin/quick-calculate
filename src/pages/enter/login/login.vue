@@ -39,11 +39,11 @@
 		</view>
 		<!-- 注册 -->
 		<view class="regit-row">
-			<button class="btn-register"></button>
+			<button class="btn-register" @click="register"></button>
 		</view>
 		<!-- 登录+微信 -->
 		<view class="footer">
-			<button class="btn-login"></button>
+			<button class="btn-login" @click="login"></button>
 			<button class="btn-wechat"></button>
 			<view>微信</view>
 		</view>
@@ -80,6 +80,18 @@
 					// this.getDayJob(this.Tyear, this.Tmonth, this.Tday, false);
 					console.log('======= switchTab, user verify', tabIndex)
 				}
+			},
+			register() {
+				console.log('click register')
+				uni.navigateTo({
+					url: '/pages/enter/register/register'
+				});
+			},
+			login() {
+				console.log('click login')
+				uni.navigateTo({
+					url: '/pages/index/question/question'
+				});
 			}
 		}
 	}
@@ -109,7 +121,7 @@
 		left: 0;
 		right: 0;		
 		background-image: url('../../static/icon/sub-bg.png');
-		background-size: 100% 100%;		
+		background-size: 100% 96%;		
 		background-repeat: no-repeat;
 		font-family: 'pxp-font';
 	}
