@@ -1,5 +1,18 @@
 <template>
 	<view class="container">
+		<view class="header">
+			<view class="btn-avatar"></view>
+			<view style="font-family: pxp-sed-font; font-size: 24px;">奥特曼</view>
+			<button class="btn-quit" @click="quit"></button>
+		</view>
+		<!-- 总览: 题目, 倒计时 -->
+		<view class="summary">
+			<!-- <view style="font-family: pxp-sed-font; font-size: 24px;">奥特曼</view> -->
+			<view style="font-family: pxp-sed-font; font-size: 24px;">题目数 : {{sunCount}}</view>
+			<view class="cd" style="font-family: pxp-sed-font; font-weight: bold; font-size: 25px;">倒计时 :
+				{{ countDown.hours }}:{{ countDown.minutes }}:{{ countDown.seconds }}</view>
+		</view>
+		<!-- 画板 -->
 		<view class="drawer">
 			<view class="draw-header">
 				<button class="btn-clear" @click="clearCanvas"></button>
@@ -30,19 +43,35 @@
 				ctx: '', // 绘图图像
 				tempPoints: [], // 每一笔路径点集合
 				finalPoints: [], // 所有路径点集合
-				res: '' //路径点集合
+				res: '', //路径点集合
+				sunCount: 100,
+				duration: 30 * 60, // 倒计时时间，单位为秒
+				countDown: {
+					hours: '00',
+					minutes: '30',
+					seconds: '00'
+				},
+				timer: null,
 			}
 		},
 		onLoad() {
 			// 加载字体
 			uni.loadFontFace({
-				family: 'pxp-font',
-				// source: 'url("https://sungd.github.io/Pacifico.ttf")',
-				source: 'url("https://mp-40dc0c3b-8c88-46a3-943c-80a76525110e.cdn.bspapp.com/quick-sum/font/cus-font.ttf")',
-				success() {
-					console.log('load crazy font ttf success!')
-				}
-			})
+					family: 'pxp-font',
+					// source: 'url("https://sungd.github.io/Pacifico.ttf")',
+					source: 'url("https://mp-40dc0c3b-8c88-46a3-943c-80a76525110e.cdn.bspapp.com/quick-sum/font/cus-font.ttf")',
+					success() {
+						console.log('load crazy font ttf success!')
+					}
+				}),
+				// 二级字体
+				uni.loadFontFace({
+					family: 'pxp-sed-font',
+					source: 'url("https://mp-40dc0c3b-8c88-46a3-943c-80a76525110e.cdn.bspapp.com/quick-sum/font/ChillZhuo.ttf")',
+					success() {
+						console.log('load crazy font ttf success!')
+					}
+				})
 
 			this.ctx = uni.createCanvasContext("draw-canvas", this); //创建绘图对象
 
@@ -51,7 +80,38 @@
 			this.ctx.lineCap = "round"
 			this.ctx.lineJoin = "round"
 		},
+		mounted() {
+			this.startCountdown();
+		},
 		methods: {
+			quit() {
+				console.log('click quit');
+			},
+			// 倒计时
+			startCountdown() {
+				this.timer = setInterval(() => {
+					if (this.duration > 0) {
+						this.duration--;
+
+						let hours = parseInt(this.duration / 3600, 10);
+						let minutes = parseInt((this.duration % 3600) / 60, 10);
+						let seconds = this.duration % 60;
+
+						hours = String(hours).padStart(2, '0');
+						minutes = String(minutes).padStart(2, '0');
+						seconds = String(seconds).padStart(2, '0');
+
+						this.countDown = {
+							hours,
+							minutes,
+							seconds
+						}; // 更新 countDown 数据
+					} else {
+						clearInterval(this.timer);
+						alert('倒计时时间到！');
+					}
+				}, 1000);
+			},
 			touchstart: function(e) {
 				let x = e.changedTouches[0].x;
 				let y = e.changedTouches[0].y;
@@ -138,7 +198,7 @@
 			identify: function() {
 				console.log(this.finalPoints)
 				this.res = ocrRaw(this.finalPoints)
-				console.log('================识别数字结果: ',this.res)
+				console.log('================识别数字结果: ', this.res)
 				//
 				// uni.request({
 				//   url: 'http://localhost:8081/hw2reco/number', //仅为示例，并非真实接口地址。
@@ -151,10 +211,10 @@
 				//     this.res = res.data.data.number;
 				//   }
 				// });
-			},			
+			},
 			lastSub() {
 				console.log('click lastSub')
-			},			
+			},
 			nextSub() {
 				console.log('click nextSub')
 			},
@@ -164,7 +224,7 @@
 				for (var i = 0; i < elements.length; i++) {
 					elements[i].style.display = displayValue;
 				}
-			}			
+			}
 		},
 	}
 </script>
@@ -196,6 +256,68 @@
 		background-size: 100% 98%;
 		/* background-color: #FCEDFA; */
 		background-repeat: no-repeat;
+		font-family: 'pxp-font';
+	}
+
+	.header {
+		/* font-size: 20px; */
+		/* background-color: #8d4057; */
+		width: 84%;
+		height: 13%;
+		margin-top: 5%;
+		margin-left: auto;
+		margin-right: auto;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.btn-avatar {
+		background-image: url('../../../static/icon/avatar.png');
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+		/* margin-top: 7%; */
+		margin-bottom: 1%;
+		position: relative;
+		left: 13px;
+		margin-right: 20px;
+		width: 90rpx;
+		height: 90rpx;
+		border: 2px solid #6B8BD3;
+		border-radius: 50px;
+	}
+
+	.btn-quit {
+		background-image: url('../../../static/icon/exit.png');
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+		position: relative;
+		left: 50px;
+		width: 17%;
+		height: 28%;
+	}
+
+	/* 总览 */
+	.summary {
+		/* background-color: #368d41; */
+		border: 2px dashed #aa00ff;
+		width: 82%;
+		height: 7%;
+		margin-top: 2%;
+		margin-left: auto;
+		margin-right: auto;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+	}
+
+	/* 倒计时 */
+	.cd {
+		position: relative;
+		color: #D7555E;
+		left: 20px;
 	}
 
 	/* 画板 */
@@ -216,16 +338,19 @@
 		font-family: 'pxp-font';
 	}
 
-	.draw-canvas {		
+	.draw-canvas {
 		position: absolute;
 		left: 6%;
 		top: 25%;
 		padding-top: 15%;
 		/* display: flex;
 		justify-content: center; */
-		width: 88%;
-		height: 40px;		 
-		background-color: #88ec9f;
+		width: 85%;
+		height: 40px;
+		/* background-color: #88ec9f; */
+		background-image: url('../../static/icon/note.png');
+		background-size: cover;
+		background-repeat: no-repeat;
 	}
 
 	.draw-header {
@@ -271,6 +396,7 @@
 		/* background-color: #ff3737; */
 		/* margin-bottom: 10px; */
 	}
+
 	.btn-last {
 		background-image: url('../../static/icon/last-sub.png');
 		background-size: cover;
@@ -282,8 +408,9 @@
 		border: none;
 		/* font-size: 20px; */
 		font-family: 'pxp-font';
-	}	
-	.btn-next {		
+	}
+
+	.btn-next {
 		background-image: url('../../static/icon/next-sub.png');
 		background-size: cover;
 		background-repeat: no-repeat;

@@ -52,7 +52,7 @@
 		left: 0;
 		right: 0;
 		background-image: url('../../static/icon/sub-bg.png');
-		background-size: 100% 96%;	
+		background-size: 100% 96%;
 		background-repeat: no-repeat;
 		font-family: 'pxp-font';
 	}

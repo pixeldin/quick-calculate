@@ -13,12 +13,13 @@
 			<view v-show="activeTab === 1" class="job-list">
 				<view class="user-row">
 					<view>用户名：（</view>
-					<input class="global-input" type="text" id="username" placeholder="手机号/用户名" />
+					<input style="font-family: pxp-sed-font; font-size: 24px;" class="global-input" type="text"
+						id="username" placeholder="手机号/用户名" />
 					<view>）</view>
 				</view>
 				<view class="pwd-row">
 					<view>&nbsp; 密码：（</view>
-					<input class="global-input" type="password" id="pwd" style="font-family: pxp-sed-font;"/>
+					<input class="global-input" type="password" id="pwd" style="font-family: pxp-sed-font;" />
 					<view>）</view>
 				</view>
 			</view>
@@ -60,21 +61,21 @@
 		onLoad() {
 			// 加载字体
 			uni.loadFontFace({
-				family: 'pxp-font',
-				// source: 'url("https://sungd.github.io/Pacifico.ttf")',
-				source: 'url("https://mp-40dc0c3b-8c88-46a3-943c-80a76525110e.cdn.bspapp.com/quick-sum/font/cus-font.ttf")',
-				success() {
-					console.log('login load crazy font ttf success!')
-				}
-			}),
-			// 二级字体
-			uni.loadFontFace({
-				family: 'pxp-sed-font',								
-				source: 'url("https://mp-40dc0c3b-8c88-46a3-943c-80a76525110e.cdn.bspapp.com/quick-sum/font/ChillZhuo.ttf")',
-				success() {
-					console.log('load crazy font ttf success!')
-				}
-			})
+					family: 'pxp-font',
+					// source: 'url("https://sungd.github.io/Pacifico.ttf")',
+					source: 'url("https://mp-40dc0c3b-8c88-46a3-943c-80a76525110e.cdn.bspapp.com/quick-sum/font/cus-font.ttf")',
+					success() {
+						console.log('login load crazy font ttf success!')
+					}
+				}),
+				// 二级字体
+				uni.loadFontFace({
+					family: 'pxp-sed-font',
+					source: 'url("https://mp-40dc0c3b-8c88-46a3-943c-80a76525110e.cdn.bspapp.com/quick-sum/font/ChillZhuo.ttf")',
+					success() {
+						console.log('load crazy font ttf success!')
+					}
+				})
 		},
 		methods: {
 			switchTab(tabIndex) {
@@ -127,9 +128,9 @@
 		top: 7%;
 		bottom: 0%;
 		left: 0;
-		right: 0;		
+		right: 0;
 		background-image: url('../../static/icon/sub-bg.png');
-		background-size: 100% 96%;		
+		background-size: 100% 96%;
 		background-repeat: no-repeat;
 		font-family: 'pxp-font';
 	}
@@ -143,7 +144,7 @@
 		height: 30px;
 		margin-top: 27%;
 		margin-left: auto;
-		margin-right: auto;		
+		margin-right: auto;
 	}
 
 	.conter-text {
@@ -163,7 +164,7 @@
 		padding: 0 0px;
 	}
 
-	.tab-bts {		
+	.tab-bts {
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -171,7 +172,7 @@
 		height: 4%;
 		margin-left: auto;
 		margin-right: auto;
-		border-radius: 0px;		
+		border-radius: 0px;
 		margin-top: 8%;
 	}
 
@@ -207,7 +208,7 @@
 		height: 21%;
 		margin-top: 6%;
 		margin-left: auto;
-		margin-right: auto;		
+		margin-right: auto;
 		/* display: flex; */
 		display: flex;
 		flex-direction: column;
@@ -282,7 +283,7 @@
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: cover;
-		margin-right: 20px;	
+		margin-right: 20px;
 		padding-left: 20px;
 		/* padding-right: 20px; */
 		margin-top: 10px;
@@ -291,14 +292,15 @@
 		width: 20px;
 		height: 39px;
 	}
-	
+
 	.regit-row {
 		/* background-color: #9adfb6; */
 		width: 100%;
 		height: 7%;
 		margin-top: 8%;
 	}
-	.btn-register{
+
+	.btn-register {
 		background-image: url("../../../static/icon/regit.png");
 		background-repeat: no-repeat;
 		background-position: center;
@@ -309,7 +311,7 @@
 		top: 6%;
 		left: 30%;
 	}
-	
+
 	/* 登录+微信 */
 	.footer {
 		display: flex;
@@ -321,7 +323,8 @@
 		height: 23%;
 		width: 100%;
 	}
-	.btn-login{
+
+	.btn-login {
 		background-image: url("../../../static/icon/login.png");
 		background-repeat: no-repeat;
 		background-position: center;
@@ -330,7 +333,8 @@
 		width: 54%;
 		height: 27%;
 	}
-	.btn-wechat{
+
+	.btn-wechat {
 		background-image: url("../../../static/icon/wechat.png");
 		background-repeat: no-repeat;
 		background-position: center;
@@ -342,5 +346,4 @@
 		border: none;
 		border-radius: 50px;
 	}
-	
 </style>

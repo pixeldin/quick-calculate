@@ -8,7 +8,8 @@
 		<view class="job-list">
 			<view class="nick-row">
 				<view>&nbsp;&nbsp;&nbsp;名称 ：（</view>
-				<input class="global-input" style="font-family: pxp-sed-font;" type="text" id="username" placeholder="  奥特曼" />
+				<input class="global-input" style="font-family: pxp-sed-font; font-size: 24px;" type="text"
+					id="username" placeholder="  奥特曼" />
 				<view>）</view>
 			</view>
 			<view class="sex-row">
@@ -25,7 +26,8 @@
 			</view>
 			<view class="user-row">
 				<view>&nbsp;&nbsp;用户名 ：（</view>
-				<input class="global-input" type="text" id="username" placeholder="" />
+				<input class="global-input" style="font-family: pxp-sed-font; font-size: 24px;" type="text"
+					id="username" placeholder="" />
 				<view>）</view>
 			</view>
 			<view class="pwd-row">
@@ -35,20 +37,23 @@
 			</view>
 			<view class="rep-pwd-row">
 				<view>重复密码 ：（</view>
-				<input class="global-input" style="font-family: pxp-sed-font;" type="password" id="username" placeholder="" />
+				<input class="global-input" style="font-family: pxp-sed-font;" type="password" id="username"
+					placeholder="" />
 				<view>）</view>
 			</view>
 			<view class="country-row">
 				<view>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;国家 ：（</view>
 				<picker class="global-input" @change="bindPickerChange" :value="index" :range="nation">
-					<view class="uni-input" style="font-family: pxp-sed-font; font-size: 26px;" >&nbsp;&nbsp;{{nation[index]}}</view>
+					<view class="uni-input" style="font-family: pxp-sed-font; font-size: 26px;">
+						&nbsp;&nbsp;{{nation[index]}}</view>
 				</picker>
 				<view>▼）</view>
 			</view>
 			<view class="city-row">
 				<view>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;城市 ：（</view>
 				<picker class="global-input" @change="bindCityPickerChange" :value="cindex" :range="city">
-					<view class="uni-input" style="font-family: pxp-sed-font; font-size: 26px;">&nbsp;&nbsp;{{city[cindex]}}</view>
+					<view class="uni-input" style="font-family: pxp-sed-font; font-size: 26px;">
+						&nbsp;&nbsp;{{city[cindex]}}</view>
 				</picker>
 				<view>▼）</view>
 			</view>
@@ -98,21 +103,21 @@
 		onLoad() {
 			// 加载字体
 			uni.loadFontFace({
-				family: 'pxp-font',				
-				source: 'url("https://mp-40dc0c3b-8c88-46a3-943c-80a76525110e.cdn.bspapp.com/quick-sum/font/cus-font.ttf")',
-				// source: 'url("https://mp-40dc0c3b-8c88-46a3-943c-80a76525110e.cdn.bspapp.com/quick-sum/font/ChillZhuo.ttf")',
-				success() {
-					console.log('load crazy font ttf success!')
-				}
-			})
-			// 二级字体
-			uni.loadFontFace({
-				family: 'pxp-sed-font',								
-				source: 'url("https://mp-40dc0c3b-8c88-46a3-943c-80a76525110e.cdn.bspapp.com/quick-sum/font/ChillZhuo.ttf")',
-				success() {
-					console.log('load crazy font ttf success!')
-				}
-			})
+					family: 'pxp-font',
+					source: 'url("https://mp-40dc0c3b-8c88-46a3-943c-80a76525110e.cdn.bspapp.com/quick-sum/font/cus-font.ttf")',
+					// source: 'url("https://mp-40dc0c3b-8c88-46a3-943c-80a76525110e.cdn.bspapp.com/quick-sum/font/ChillZhuo.ttf")',
+					success() {
+						console.log('load crazy font ttf success!')
+					}
+				}),
+				// 二级字体
+				uni.loadFontFace({
+					family: 'pxp-sed-font',
+					source: 'url("https://mp-40dc0c3b-8c88-46a3-943c-80a76525110e.cdn.bspapp.com/quick-sum/font/ChillZhuo.ttf")',
+					success() {
+						console.log('load crazy font ttf success!')
+					}
+				})
 		},
 		computed: {
 			startDate() {
