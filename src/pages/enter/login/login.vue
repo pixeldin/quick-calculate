@@ -18,7 +18,7 @@
 				</view>
 				<view class="pwd-row">
 					<view>&nbsp; 密码：（</view>
-					<input class="global-input" type="password" id="pwd" />
+					<input class="global-input" type="password" id="pwd" style="font-family: pxp-sed-font;"/>
 					<view>）</view>
 				</view>
 			</view>
@@ -65,6 +65,14 @@
 				source: 'url("https://mp-40dc0c3b-8c88-46a3-943c-80a76525110e.cdn.bspapp.com/quick-sum/font/cus-font.ttf")',
 				success() {
 					console.log('login load crazy font ttf success!')
+				}
+			}),
+			// 二级字体
+			uni.loadFontFace({
+				family: 'pxp-sed-font',								
+				source: 'url("https://mp-40dc0c3b-8c88-46a3-943c-80a76525110e.cdn.bspapp.com/quick-sum/font/ChillZhuo.ttf")',
+				success() {
+					console.log('load crazy font ttf success!')
 				}
 			})
 		},
@@ -230,7 +238,7 @@
 		align-items: center;
 		justify-content: center;
 		/* background-color: #df22a3; */
-		height: 40%;
+		height: 35%;
 		width: 88%;
 	}
 
@@ -240,7 +248,7 @@
 		align-items: center;
 		justify-content: center;
 		/* background-color: #b9df81; */
-		height: 42%;
+		height: 33%;
 		width: 80%;
 	}
 
