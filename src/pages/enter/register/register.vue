@@ -1,9 +1,9 @@
 <template>
 	<view class="container">
 		<view class="header">
-			<button class="btn-cancel" @click="returnCancel"></button>
+			<view class="btn-cancel" @click="returnCancel"></view>
 			<view class="btn-avatar"></view>
-			<button class="btn-save" @click="sure"></button>
+			<view class="btn-save" @click="sure"></view>
 		</view>
 		<view class="job-list">
 			<view class="nick-row">
@@ -13,9 +13,9 @@
 				<view>）</view>
 			</view>
 			<view class="sex-row">
-				<view>&nbsp;性别 ：&nbsp;</view>
+				<view>&nbsp;&nbsp;性别 ：</view>
 				<!-- <uni-section class="global-input" title="" type="line"> -->
-				<view class="global-input">
+				<view class="global-input" style="width: 43%; ">
 					<uni-data-checkbox :localdata="sex"></uni-data-checkbox>
 				</view>
 				<!-- </uni-section> -->
@@ -221,7 +221,9 @@
 		background-size: 100% 100%;
 		background-repeat: no-repeat;
 		width: 20%;
-		height: 45%;
+		height: 43%;
+		position: relative;
+		right: 40px;
 	}
 
 	.btn-avatar {
@@ -230,6 +232,8 @@
 		background-repeat: no-repeat;
 		/* margin-top: 7%; */
 		margin-bottom: 1%;
+		position: relative;
+		left: 2%;
 		width: 90rpx;
 		height: 90rpx;
 		border: 2px solid #6B8BD3;
@@ -241,7 +245,9 @@
 		background-size: 100% 100%;
 		background-repeat: no-repeat;
 		width: 20%;
-		height: 45%;
+		height: 43%;
+		position: relative;
+		left: 50px;
 	}
 
 	.job-list {

@@ -2,15 +2,16 @@
 	<view class="container">
 		<view class="header">
 			<view class="btn-avatar"></view>
-			<view style="font-family: pxp-sed-font; font-size: 24px;">奥特曼</view>
-			<button class="btn-quit" @click="quit"></button>
+			<view style="font-family: pxp-sed-font; font-size: 24px;position: relative;	right: 50px;">奥特曼</view>
+			<view class="btn-quit" @click="quit"></view>
 		</view>
 		<!-- 总览: 题目, 倒计时 -->
 		<view class="summary">
 			<!-- <view style="font-family: pxp-sed-font; font-size: 24px;">奥特曼</view> -->
 			<view style="font-family: pxp-sed-font; font-size: 24px;">题目数 : {{sunCount}}</view>
 			<view class="cd" style="font-family: pxp-sed-font; font-weight: bold; font-size: 25px;">倒计时 :
-				{{ countDown.hours }}:{{ countDown.minutes }}:{{ countDown.seconds }}</view>
+				{{ countDown.hours }}:{{ countDown.minutes }}:{{ countDown.seconds }}
+			</view>
 		</view>
 		<!-- 画板 -->
 		<view class="drawer">
@@ -30,6 +31,9 @@
 </template>
 
 <script lang="js">
+	// 翻页
+	//turn.js
+	// import turn from '../../static/js/turn.min.js'
 	import {
 		getNumber,
 		ocrRaw
@@ -86,6 +90,9 @@
 		methods: {
 			quit() {
 				console.log('click quit');
+				uni.navigateTo({
+					url: '/pages/index/question/question'
+				});
 			},
 			// 倒计时
 			startCountdown() {
@@ -280,7 +287,7 @@
 		/* margin-top: 7%; */
 		margin-bottom: 1%;
 		position: relative;
-		left: 13px;
+		right: 50px;
 		margin-right: 20px;
 		width: 90rpx;
 		height: 90rpx;

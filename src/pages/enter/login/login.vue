@@ -40,11 +40,11 @@
 		</view>
 		<!-- 注册 -->
 		<view class="regit-row">
-			<button class="btn-register" @click="register"></button>
+			<view class="btn-register" @click="register"></view>
 		</view>
 		<!-- 登录+微信 -->
 		<view class="footer">
-			<button class="btn-login" @click="login"></button>
+			<view class="btn-login" @click="login"></view>
 			<button class="btn-wechat"></button>
 			<view>微信</view>
 		</view>
@@ -298,6 +298,7 @@
 		width: 100%;
 		height: 7%;
 		margin-top: 8%;
+		padding-left: 37%;
 	}
 
 	.btn-register {
@@ -341,8 +342,8 @@
 		background-size: cover;
 		margin-top: 7%;
 		margin-bottom: 1%;
-		width: 12%;
-		height: 25%;
+		width: 90rpx;
+		height: 90rpx;
 		border: none;
 		border-radius: 50px;
 	}
