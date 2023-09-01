@@ -13,7 +13,7 @@
 			<view v-show="activeTab === 1" class="job-list">
 				<view class="user-row">
 					<view>用户名：（</view>
-					<input style="font-family: pxp-sed-font; font-size: 24px;" class="global-input" type="text"
+					<input style="font-family: pxp-sed-font; font-size: 24px;" class="u-global-input" type="text"
 						id="username" placeholder="手机号/用户名" />
 					<view>）</view>
 				</view>
@@ -26,7 +26,7 @@
 			<view v-show="activeTab === 2" class="job-list">
 				<view class="phone-vfy-row">
 					<view>手机号：（</view>
-					<input type="text" class="global-input" placeholder="15093820979" />
+					<input type="text" class="u-global-input" placeholder="15093820979" />
 					<view>）</view>
 					<view class="send-text">发送</view>
 				</view>
@@ -60,18 +60,19 @@
 		},
 		onLoad() {
 			// 加载字体
+			// 加载字体
 			uni.loadFontFace({
 					family: 'pxp-font',
-					// source: 'url("https://sungd.github.io/Pacifico.ttf")',
-					source: 'url("https://mp-40dc0c3b-8c88-46a3-943c-80a76525110e.cdn.bspapp.com/quick-sum/font/cus-font.ttf")',
+					source: 'url("../../static/cus-font.ttf")',
+					// source: 'url("https://mp-40dc0c3b-8c88-46a3-943c-80a76525110e.cdn.bspapp.com/quick-sum/font/cus-font.ttf")',
 					success() {
-						console.log('login load crazy font ttf success!')
+						console.log('load crazy font ttf success!')
 					}
 				}),
 				// 二级字体
 				uni.loadFontFace({
 					family: 'pxp-sed-font',
-					source: 'url("https://mp-40dc0c3b-8c88-46a3-943c-80a76525110e.cdn.bspapp.com/quick-sum/font/ChillZhuo.ttf")',
+					source: 'url("../../static//ChillZhuo.ttf")',
 					success() {
 						console.log('load crazy font ttf success!')
 					}
@@ -229,6 +230,11 @@
 	.global-input {
 		/* 全局输入框右移 */
 		padding-left: 13px;
+		width: 37%;
+		font-size: 19px;
+	}
+	.u-global-input {
+		padding-left: 12px;
 		width: 37%;
 		font-size: 19px;
 	}

@@ -4,7 +4,7 @@
 			<view class="btn-avatar"></view>
 			<view class="nick" style="font-family: pxp-sed-font; font-size: 18px;">奥特曼</view>
 			<view style="font-family: pxp-font; font-size: 24px;font-weight: bold;">&nbsp;&nbsp;&nbsp;数学</view>
-			<button class="btn-quit" @click="quit"></button>
+			<button class="q-btn-quit" @click="quit"></button>
 		</view>
 		<view class="select-btns">
 			<view class="select-all" @click="selectAll">全选</view>
@@ -14,33 +14,15 @@
 		<view class="options">
 			<scroll-view scroll-y="true" show-scrollbar="false" class="scroll-Y" :scroll-top="scrollTop"
 				@scroll="scroll">
-				<view id="demo1" class="scroll-view-item" @click="check">
+
+				<view class="scroll-view-item" @click="check(idx)" v-for="(item, idx) in subject" :key="idx">
 					<view class="opt-view">
-						<text class="opt-head">20以内加减（补数法）</text>
-						<text class="opt-ctx">把其中一个数分解成两个数，分解的其中一个数和另一个数相加等于10</text>
+						<text class="opt-head">{{ item.head }}</text>
+						<text class="opt-ctx">{{ item.desc }}</text>
+						<view class="check-icon"
+							:style="{ backgroundImage: checkedItems.includes(idx) ? 'url(../../../static/icon/check.png)' : 'url(../../../static/icon/uncheck.png)' }">
+						</view>
 					</view>
-					<view class="check-icon"></view>
-				</view>
-				<view id="demo2" class="scroll-view-item" @click="check">
-					<view class="opt-view">
-						<text class="opt-head">两位数个位和十位是镜像的两个数</text>
-						<text class="opt-ctx">互为镜像的两位数相当于任意的一个数字个位+十位的和乘11</text>
-					</view>
-					<view class="check-icon"></view>
-				</view>
-				<view id="demo3" class="scroll-view-item" @click="check">
-					<view class="opt-view">
-						<text class="opt-head">尾数为5的两位数平方</text>
-						<text class="opt-ctx">结尾是25，前面两个数是原来数十位x（十位数+1）</text>
-					</view>
-					<view class="check-icon"></view>
-				</view>
-				<view id="demo4" class="scroll-view-item" @click="check">
-					<view class="opt-view">
-						<text class="opt-head">20以内加减（补数法）</text>
-						<text class="opt-ctx">把其中一个数分解成两个数，分解的其中一个数和另一个数相加等于10</text>
-					</view>
-					<view class="check-icon"></view>
 				</view>
 			</scroll-view>
 		</view>
@@ -51,7 +33,7 @@
 				<view class="subNum-row">
 					<view style="font-family: pxp-sed-font; font-size: 24px;">题数: (</view>
 					<input class="global-input" style="font-family: pxp-sed-font; font-size: 24px;" type="text"
-						id="i-subNum" placeholder="100" v-model="subNum"/>
+						id="i-subNum" placeholder="100" v-model="subNum" />
 					<view style="font-family: pxp-sed-font; font-size: 26px;">)</view>
 				</view>
 				<view class="subTime-row">
@@ -63,35 +45,52 @@
 					<view style="font-family: pxp-sed-font; font-size: 26px;">)</view>
 				</view>
 				<view class="btn-modal">
-					<view class="btn-cancel" @click="cancel"></view>
-					<view class="btn-sure" @click="sure"></view>
+					<view class="q-btn-cancel" @click="cancel"></view>
+					<view class="q-btn-sure" @click="sure"></view>
 				</view>
 			</view>
 		</view>
 		<!-- 出题 -->
 		<view class="btn-show" @click="show"></view>
+
+		<!-- 提示信息弹窗 -->
+		<view>
+			<uni-popup ref="message" type="message">
+				<uni-popup-message :type="msgType" :message="messageText" :duration="3000"></uni-popup-message>
+			</uni-popup>
+		</view>
 	</view>
 </template>
 
 <script>
+	import store from '@/static/js/store.js'
 	export default {
 		data() {
 			return {
 				scrollTop: 0,
+				subject: [],
+				// 选中题目类型
+				checkedItems: [],
 				old: {
 					scrollTop: 0
 				},
 				// 注意此处兼容官方插件, 单位是分钟.
 				time: '00:30',
-				subNum: 100
+				subNum: 100,
+				type: 'center',
+				msgType: 'success',
+				messageText: '这是一条成功提示',
+				value: ''
 			}
 		},
 		onLoad() {
+			console.log('Pxp --------- onLoad from store.js---------', store.subList)
+			this.subject = store.subList
 			// 加载字体
 			uni.loadFontFace({
 					family: 'pxp-font',
-					// source: 'url("https://sungd.github.io/Pacifico.ttf")',
-					source: 'url("https://mp-40dc0c3b-8c88-46a3-943c-80a76525110e.cdn.bspapp.com/quick-sum/font/cus-font.ttf")',
+					source: 'url("../../static/cus-font.ttf")',
+					// source: 'url("https://mp-40dc0c3b-8c88-46a3-943c-80a76525110e.cdn.bspapp.com/quick-sum/font/cus-font.ttf")',
 					success() {
 						console.log('load crazy font ttf success!')
 					}
@@ -99,13 +98,23 @@
 				// 二级字体
 				uni.loadFontFace({
 					family: 'pxp-sed-font',
-					source: 'url("https://mp-40dc0c3b-8c88-46a3-943c-80a76525110e.cdn.bspapp.com/quick-sum/font/ChillZhuo.ttf")',
+					source: 'url("../../static//ChillZhuo.ttf")',
 					success() {
 						console.log('load crazy font ttf success!')
 					}
 				})
 		},
+		onReady() {},
 		methods: {
+			check(index) {
+				if (this.checkedItems.includes(index)) {
+					console.log('出题页面: uncheck 下标:', index)
+					this.checkedItems = this.checkedItems.filter((item) => item !== index);
+				} else {
+					console.log('出题页面: check 下标:', index)
+					this.checkedItems.push(index);
+				}
+			},
 			scroll: function(e) {
 				this.old.scrollTop = e.detail.scrollTop
 			},
@@ -123,17 +132,26 @@
 			},
 			selectAll() {
 				console.log('出题页面: select-all')
+				this.checkedItems = this.subject.map((_, idx) => idx);
 			},
 			unselectAll() {
 				console.log('出题页面: unselect-all')
+				this.checkedItems = []
 			},
-			check() {
-				console.log('出题页面: check')
+			messageToggle(type) {
+				this.msgType = type
+				this.messageText = `请先点击选择题目类型。`
+				this.$refs.message.open()
 			},
 			show() {
+				console.log('出题页面: click show')
+				if (this.isCheckedItemsEmpty()) {
+					// 弹窗警告
+					this.messageToggle('warn')
+					return
+				}
 				// 显示模态框
 				this.changeHideStatus('modal', 'block')
-				console.log('出题页面: click show')
 			},
 			cancel() {
 				console.log('出题页面: click cancel')
@@ -143,11 +161,14 @@
 				this.time = '00:30'
 				this.subNum = 100
 			},
+			isCheckedItemsEmpty() {
+				return this.checkedItems.length === 0;
+			},
 			sure() {
 				console.log('出题页面: click sure')
 				this.changeHideStatus('modal', 'none')
 				// 跳转答题页面
-				console.log('Ready to 答题... 题目数/时间', this.subNum, this.time)
+				console.log('Ready to 答题... 题目数/时间/选择类型', this.subNum, this.time, JSON.stringify(this.checkedItems))
 			},
 			bindTimeChange: function(e) {
 				this.time = e.detail.value
@@ -228,7 +249,7 @@
 		color: #6B8BD3;
 	}
 
-	.btn-quit {
+	.q-btn-quit {
 		background-image: url('../../static/icon/exit.png');
 		background-size: 100% 100%;
 		background-repeat: no-repeat;
@@ -288,12 +309,13 @@
 	}
 
 	.opt-head {
+		/* border: 2px dashed #57d399; */
 		font-family: pxp-sed-font;
 		font-weight: bold;
 		margin-left: 7px;
 		margin-top: 7px;
 		font-size: 22px;
-		width: 98%;
+		width: 95%;
 		/* 字符超长自动省略 */
 		display: -webkit-box;
 		-webkit-box-orient: vertical;
@@ -303,6 +325,7 @@
 	}
 
 	.opt-ctx {
+		/* border: 2px dashed #57d399; */
 		font-family: pxp-sed-font;
 		/* font-weight: bold; */
 		margin-left: 10px;
@@ -321,13 +344,13 @@
 		background-image: url('../../../static/icon/uncheck.png');
 		background-size: 100% 100%;
 		background-repeat: no-repeat;
-		position: relative;
 		border-radius: 50px;
 		/* bottom: 85rpx;
 		left: 3%; */
 		/* border: 2px solid #5cd30d; */
-		left: 86%;
-		bottom: 45%;
+		position: relative;
+		margin-left: 80%;
+		margin-top: -80rpx;
 		width: 45rpx;
 		height: 45rpx;
 	}
@@ -441,21 +464,23 @@
 		align-items: center;
 	}
 
-	.btn-cancel {
+	.q-btn-cancel {
 		background-size: 100% 100%;
 		background-repeat: no-repeat;
 		background-image: url('../../../static/icon/cancel.png');
 		width: 160rpx;
 		height: 75rpx;
+		position: relative;
+		right: 20px;
 	}
 
-	.btn-sure {
+	.q-btn-sure {
 		background-size: 100% 100%;
 		background-repeat: no-repeat;
 		background-image: url('../../../static/icon/btn-sure.png');
 		width: 160rpx;
 		height: 75rpx;
-		margin-left: 40px;
-		;
+		position: relative;
+		left: 20px;
 	}
 </style>

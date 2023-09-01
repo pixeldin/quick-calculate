@@ -104,8 +104,8 @@
 			// 加载字体
 			uni.loadFontFace({
 					family: 'pxp-font',
-					source: 'url("https://mp-40dc0c3b-8c88-46a3-943c-80a76525110e.cdn.bspapp.com/quick-sum/font/cus-font.ttf")',
-					// source: 'url("https://mp-40dc0c3b-8c88-46a3-943c-80a76525110e.cdn.bspapp.com/quick-sum/font/ChillZhuo.ttf")',
+					source: 'url("../../static/cus-font.ttf")',
+					// source: 'url("https://mp-40dc0c3b-8c88-46a3-943c-80a76525110e.cdn.bspapp.com/quick-sum/font/cus-font.ttf")',
 					success() {
 						console.log('load crazy font ttf success!')
 					}
@@ -113,7 +113,7 @@
 				// 二级字体
 				uni.loadFontFace({
 					family: 'pxp-sed-font',
-					source: 'url("https://mp-40dc0c3b-8c88-46a3-943c-80a76525110e.cdn.bspapp.com/quick-sum/font/ChillZhuo.ttf")',
+					source: 'url("../../static//ChillZhuo.ttf")',
 					success() {
 						console.log('load crazy font ttf success!')
 					}

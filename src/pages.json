@@ -6,7 +6,7 @@
 				"navigationStyle": "custom",
 				"onReachBottomDistance": 70,
 				// "navigationBarTitleText": "pixel-todo",
-				"navigationBarBackgroundColor": "#FCEDFA",
+				"navigationBarBackgroundColor": "#6B8BD3",
 				"app-plus": {
 					"titleNView": false, //禁用原生导航栏
 					"bounce": "none", //关闭窗口回弹效果
@@ -26,7 +26,7 @@
 				"navigationStyle": "custom",
 				"onReachBottomDistance": 70,
 				// "navigationBarTitleText": "pixel-todo",
-				"navigationBarBackgroundColor": "#FCEDFA",
+				"navigationBarBackgroundColor": "#6B8BD3",
 				"app-plus": {
 					"titleNView": false, //禁用原生导航栏
 					"bounce": "none", //关闭窗口回弹效果
@@ -44,7 +44,7 @@
 				"navigationStyle": "custom",
 				"onReachBottomDistance": 70,
 				// "navigationBarTitleText": "pixel-todo",
-				"navigationBarBackgroundColor": "#FCEDFA",
+				"navigationBarBackgroundColor": "#6B8BD3",
 				"app-plus": {
 					"titleNView": false, //禁用原生导航栏
 					"bounce": "none", //关闭窗口回弹效果
@@ -63,7 +63,7 @@
 				"navigationStyle": "custom",
 				"onReachBottomDistance": 70,
 
-				"navigationBarBackgroundColor": "#FCEDFA",
+				"navigationBarBackgroundColor": "#6B8BD3",
 				"app-plus": {
 					"titleNView": false,
 					"bounce": "none",
@@ -82,7 +82,7 @@
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"navigationBarBackgroundColor": "#6B8BD3",
+		"backgroundColor": "#6B8BD3"
 	}
 }

@@ -1,9 +1,9 @@
 <template>
 	<view class="container">
 		<view class="header">
-			<view class="btn-avatar"></view>
+			<view class="a-btn-avatar"></view>
 			<view style="font-family: pxp-sed-font; font-size: 24px;position: relative;	right: 50px;">奥特曼</view>
-			<view class="btn-quit" @click="quit"></view>
+			<view class="a-btn-quit" @click="quit"></view>
 		</view>
 		<!-- 总览: 题目, 倒计时 -->
 		<view class="summary">
@@ -62,8 +62,8 @@
 			// 加载字体
 			uni.loadFontFace({
 					family: 'pxp-font',
-					// source: 'url("https://sungd.github.io/Pacifico.ttf")',
-					source: 'url("https://mp-40dc0c3b-8c88-46a3-943c-80a76525110e.cdn.bspapp.com/quick-sum/font/cus-font.ttf")',
+					source: 'url("../../static/cus-font.ttf")',
+					// source: 'url("https://mp-40dc0c3b-8c88-46a3-943c-80a76525110e.cdn.bspapp.com/quick-sum/font/cus-font.ttf")',
 					success() {
 						console.log('load crazy font ttf success!')
 					}
@@ -71,7 +71,7 @@
 				// 二级字体
 				uni.loadFontFace({
 					family: 'pxp-sed-font',
-					source: 'url("https://mp-40dc0c3b-8c88-46a3-943c-80a76525110e.cdn.bspapp.com/quick-sum/font/ChillZhuo.ttf")',
+					source: 'url("../../static//ChillZhuo.ttf")',
 					success() {
 						console.log('load crazy font ttf success!')
 					}
@@ -280,7 +280,7 @@
 		align-items: center;
 	}
 
-	.btn-avatar {
+	.a-btn-avatar {
 		background-image: url('../../../static/icon/avatar.png');
 		background-size: 100% 100%;
 		background-repeat: no-repeat;
@@ -295,7 +295,7 @@
 		border-radius: 50px;
 	}
 
-	.btn-quit {
+	.a-btn-quit {
 		background-image: url('../../../static/icon/exit.png');
 		background-size: 100% 100%;
 		background-repeat: no-repeat;
