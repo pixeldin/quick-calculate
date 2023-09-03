@@ -56,7 +56,7 @@
 		<!-- 提示信息弹窗 -->
 		<view>
 			<uni-popup ref="message" type="message">
-				<uni-popup-message :type="msgType" :message="messageText" :duration="3000"></uni-popup-message>
+				<uni-popup-message style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" :type="msgType" :message="messageText" :duration="3000"></uni-popup-message>
 			</uni-popup>
 		</view>
 	</view>
@@ -86,6 +86,9 @@
 		onLoad() {
 			console.log('Pxp --------- onLoad from store.js---------', store.subList)
 			this.subject = store.subList
+			// 生成题库规则
+			store.generate20CutRule()
+			store.generateMirrorPlusRule()
 			// 加载字体
 			uni.loadFontFace({
 					family: 'pxp-font',
@@ -164,11 +167,27 @@
 			isCheckedItemsEmpty() {
 				return this.checkedItems.length === 0;
 			},
+			convertTimeToMinutes(timeString) {
+			  const [hours, minutes] = timeString.split(':').map(Number);
+			  return (hours * 60) + minutes;
+			},
 			sure() {
 				console.log('出题页面: click sure')
 				this.changeHideStatus('modal', 'none')
-				// 跳转答题页面
 				console.log('Ready to 答题... 题目数/时间/选择类型', this.subNum, this.time, JSON.stringify(this.checkedItems))
+				store.updateSetting({
+					// 时长min
+					duration: this.convertTimeToMinutes(this.time),
+					// 题目类型
+					type: this.checkedItems,
+					subNumber: parseInt(this.subNum, 10)
+				})
+				// console.log(store.setting)
+				// 跳转答题页面
+				uni.navigateTo({
+					url: '/pages/index/answer'
+				});
+				
 			},
 			bindTimeChange: function(e) {
 				this.time = e.detail.value
