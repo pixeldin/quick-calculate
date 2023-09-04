@@ -491,7 +491,7 @@ function generate100M110Rule() {
 		var operand1 = operands[1];
 		var s12 = parseInt(operand1.charAt(2));
 
-		var rule = "(" + s01 + "+" + s0 + ")(" + s01 + "x" + s12 + ") = " +
+		var rule = "(" + s0 + "+" + s12 + ")(" + s01 + "x" + s12 + ") = " +
 			result;
 		ruleArr.push(rule);
 	}
