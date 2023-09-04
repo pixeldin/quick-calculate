@@ -56,7 +56,8 @@
 		<!-- 提示信息弹窗 -->
 		<view>
 			<uni-popup ref="message" type="message">
-				<uni-popup-message style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" :type="msgType" :message="messageText" :duration="3000"></uni-popup-message>
+				<uni-popup-message style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" :type="msgType"
+					:message="messageText" :duration="3000"></uni-popup-message>
 			</uni-popup>
 		</view>
 	</view>
@@ -86,9 +87,8 @@
 		onLoad() {
 			console.log('Pxp --------- onLoad from store.js---------', store.subList)
 			this.subject = store.subList
-			// 生成题库规则
-			store.generate20CutRule()
-			store.generateMirrorPlusRule()
+			// 生成题库规则提示语
+			store.initSubRule()
 			// 加载字体
 			uni.loadFontFace({
 					family: 'pxp-font',
@@ -168,8 +168,8 @@
 				return this.checkedItems.length === 0;
 			},
 			convertTimeToMinutes(timeString) {
-			  const [hours, minutes] = timeString.split(':').map(Number);
-			  return (hours * 60) + minutes;
+				const [hours, minutes] = timeString.split(':').map(Number);
+				return (hours * 60) + minutes;
 			},
 			sure() {
 				console.log('出题页面: click sure')
@@ -187,7 +187,7 @@
 				uni.navigateTo({
 					url: '/pages/index/answer'
 				});
-				
+
 			},
 			bindTimeChange: function(e) {
 				this.time = e.detail.value

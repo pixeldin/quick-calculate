@@ -44,7 +44,7 @@
 								{{getExpressionPrefix(item.opt)}}=
 							</view>
 							<!-- 结果 -->
-							<view class="at-ans">&nbsp;{{inputValues[rowIndex * 2 + itemIndex]}}</view>
+							<view class="at-ans">{{inputValues[rowIndex * 2 + itemIndex]}}</view>
 							<view class="at-ans tof"
 								:style="{ backgroundImage: trueIndex.includes(rowIndex * 2 + itemIndex) ? 'url(../../../static/icon/true.png)' : 'url(../../../static/icon/false.png)' }">
 							</view>
@@ -739,10 +739,10 @@
 	.a-bef {
 		/* border-top: 1px solid #41d33a; */
 		/* background-color: #fafa00; */
-		height: 100%;
-		width: 56%;
+		height: 100%;		
+		width: 58%;
 		font-family: 'pxp-sed-font';
-		font-size: 20px;
+		font-size: 19px;
 		text-align: right;
 	}
 
@@ -970,7 +970,8 @@
 		font-weight: bold;
 		align-items: center;
 		justify-content: center;
-		margin-top: 18%;
+		margin-top: 14%;
+		margin-bottom: 5%;
 		font-family: 'pxp-sed-font';
 		font-size: 30px;
 		width: 20%;
@@ -992,7 +993,8 @@
 		flex-direction: row;
 		align-items: center;
 		justify-content: left;
-		margin-top: 7%;
+		font-weight: bold;
+		margin-top: 10%;
 		width: 80%;
 		height: 10%;
 	}
@@ -1001,8 +1003,8 @@
 		flex-direction: row;
 		align-items: center;
 		justify-content: center;
-		margin-top: 5%;
-		width: 80%;
+		margin-top: 7%;
+		width: 91%;
 		height: 10%;
 	}
 </style>
